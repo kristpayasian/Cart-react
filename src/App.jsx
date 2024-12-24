@@ -71,6 +71,7 @@ const products = [
 
 function App() {
   const [cart, setCart] = useState({});
+  
 
   const handleAddToCart = (product) => {
     setCart((prevCart) => ({
@@ -103,7 +104,7 @@ function App() {
     <div className="container">
       <div className="container1">
         <h2>Desserts</h2>
-        <ProductList products={products} onAddToCart={handleAddToCart} />
+        <ProductList products={products} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
       </div>
       <div className="container2">
         <Cart
@@ -119,3 +120,5 @@ function App() {
 }
 
 export default App;
+
+

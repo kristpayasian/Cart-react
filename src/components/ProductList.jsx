@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-function ProductList({ products, onAddToCart }) {
+function ProductList({ products, onAddToCart, onRemoveFromCart }) {
   const [itemCounts, setItemCounts] = useState({});
-
+  console.log(itemCounts);
   const handleAdd = (product) => {
     const newCount = (itemCounts[product.name] || 0) + 1;
     setItemCounts({ ...itemCounts, [product.name]: newCount });
-    onAddToCart(product); // Notify parent
+    onAddToCart(product);
   };
 
   const handleRemove = (product) => {
@@ -14,6 +14,7 @@ function ProductList({ products, onAddToCart }) {
     if (currentCount > 0) {
       const newCount = currentCount - 1;
       setItemCounts({ ...itemCounts, [product.name]: newCount });
+      onRemoveFromCart(product);
     }
   };
 
@@ -27,18 +28,15 @@ function ProductList({ products, onAddToCart }) {
             <div className="product-card">
               <img src={product.image} alt={product.alt} />
             </div>
-            <button
-              className={`add-to-cart ${count > 0 ? "active" : ""}`}
-              onClick={() => handleAdd(product)}
-              
-            >
-              {count > 0 ? (
+            {count > 0 ? <div 
+              className={`add-to-cart active`}>
                 <div style={{ display: "flex", alignItems: "center" , fontSize: "18px"}}>
+                  <button>
                    <img
                     src="/assets/images/icon-increment-quantity.svg"
                     alt="Add"
                     onClick={(e) => {
-                      e.stopPropagation(); // Prevent parent button click
+                      e.stopPropagation(); 
                       handleAdd(product);
                     }}
                     style={{
@@ -47,14 +45,16 @@ function ProductList({ products, onAddToCart }) {
                       height: "16px",
                       marginRight: "21px",
                     }}
-                  
+                    
                   />
+                  </button>
                   {count}
+                  <button>
                   <img
                     src="/assets/images/icon-decrement-quantity.svg"
                     alt="Remove"
                     onClick={(e) => {
-                      e.stopPropagation(); // Prevent parent button click
+                      e.stopPropagation(); 
                       handleRemove(product);
                     }}
                     style={{
@@ -64,17 +64,18 @@ function ProductList({ products, onAddToCart }) {
                       marginLeft: "25px",
                     }}
                   />
+                  </button>
                 </div>
-              ) : (
-                <>
-                  <img
+            </div> :
+            
+            <div className="add-to-cart" onClick={() => handleAdd(product)}>
+              <img
                     src="/assets/images/icon-add-to-cart.svg"
                     alt="Add to Cart"
                   />
                   Add to cart
-                </>
-              )}
-            </button>
+            </div>
+            }
             <p>{product.category}</p>
             <h3>{product.name}</h3>
             <h6>${product.price.toFixed(2)}</h6>

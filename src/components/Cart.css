@@ -34,6 +34,21 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     margin-bottom: -38px;
   }
+  .add-to-cart {
+    background-color: white;
+      transform: translate(82px, 14px);
+      display: flex;
+      justify-content: center;
+      width: 49%;
+      font-size: 17px;
+      padding: 11px 6px;
+      border: 1px solid black;
+      border-radius: 20px;
+  }
+
+  .add-to-cart img {
+    padding: 0rem 0.3rem;
+  }
 
   .add-to-cart.active {
     background-color: rgb(199, 58, 15);
@@ -43,7 +58,7 @@
     margin: 10px 0px;
     border-radius: 20px;
     cursor: pointer;
-    transform: translate(91px, 8px);
+    transform: translate(71px, 8px);
     transition: background-color 0.3s;
     font-size: 15px;
     display: inline-flex;
@@ -60,7 +75,14 @@
     padding: 1rem;
   }
 
-  
+  .product-list button {
+    background-color: rgb(199, 58, 15);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 15px;
+    display: inline-flex;
+  }
   
   .cart-items {
     list-style: none;

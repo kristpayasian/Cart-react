@@ -118,7 +118,7 @@ function Cart({ cart, products, onAddToCart, onRemoveFromCart, onDeleteItem }) {
         </small>
       </div>
     </div>
-    {/* Display total price for each item */}
+    
     <div style={{ fontWeight: "bold" }}>
       ${ (count * product.price).toFixed(2) }
     </div>
